@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jmodelproxylib"
+version = "0.0.1"
+description = "Charm library for juju-*-proxy model config"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache" }
+authors = [
+    { name= "Adam Dyess", email = "adam.dyess@canonical.com" }
+]
+dependencies = []
+keywords = [
+    "juju",
+    "charming",
+    "operators",
+    "systemd",
+    "http-proxy",
+    "validation"
+]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
+]
+
+[project.optional-dependencies]
+lightkube = [
+    "lightkube"
+]
+
+[project.urls]
+Repository = "https://github.com/canonical/jmodelproxylib"
+BugTracker = "https://github.com/canonical/jmodelproxylib/issues"
+
+[tool.ruff]
+line-length = 99
+target-version = "py310"
+
+[tool.setuptools]
+zip-safe = true
+
+[tool.setuptools.packages.find]
+namespaces = true
+
+[dependency-groups]
+format = ["ruff"]
+unit = [
+    "lightkube",
+    "pytest-cov"
+]
+lint = [
+    "lightkube",
+    "mypy",
+    "ruff",
+    "types-PyYAML",
+    "types-backports"
+
+]
