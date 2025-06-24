@@ -24,6 +24,28 @@ def test_environ_disabled():
 
 
 @pytest.mark.parametrize(
+    "empty, available",
+    [
+        ["JUJU_CHARM_HTTPS_PROXY", "HTTP_PROXY"],
+        ["JUJU_CHARM_HTTP_PROXY", "HTTPS_PROXY"],
+    ],
+)
+def test_environ_empty_http_value(empty, available, caplog):
+    caplog.set_level("ERROR", logger="jmodelproxylib")
+    env = DEFAULT_ENV.copy()
+    env[empty] = ""
+    with mock.patch.dict(os.environ, env, clear=True):
+        environ = jmodelproxylib.environ(enabled=True)
+    assert environ[available]
+    assert environ[available.lower()]
+    assert environ[empty[11:]] == ""
+    assert environ[empty[11:].lower()] == ""
+    assert environ["no_proxy"] == "localhost"
+    assert environ["NO_PROXY"] == "localhost"
+    assert not environ.error, "Should not be in error state"
+
+
+@pytest.mark.parametrize(
     "invalid",
     [
         "JUJU_CHARM_HTTPS_PROXY",

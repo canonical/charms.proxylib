@@ -47,7 +47,7 @@ def raw() -> Env:
         if (v := os.getenv(k)) is None:
             raise errors.JujuEnvironmentError(f"{k} environment variable is not set.")
         s[k] = v.strip()
-        if k in ("JUJU_CHARM_HTTP_PROXY", "JUJU_CHARM_HTTPS_PROXY"):
+        if v and k in ("JUJU_CHARM_HTTP_PROXY", "JUJU_CHARM_HTTPS_PROXY"):
             _validate_proxy_url(v)
     return s
 
