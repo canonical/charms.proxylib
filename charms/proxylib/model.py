@@ -3,7 +3,7 @@ import os
 from typing import TypeAlias
 from urllib.parse import urlparse
 
-import jmodelproxylib.errors as errors
+import charms.proxylib.errors as errors
 
 Env: TypeAlias = dict[str, str]
 log = logging.getLogger(__name__)

@@ -1,5 +1,5 @@
 class LibraryError(Exception):
-    """Base class for all exceptions raised by the jmodelproxylib library."""
+    """Base class for all exceptions raised by the charms.proxylib library."""
 
     pass
 

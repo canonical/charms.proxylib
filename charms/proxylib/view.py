@@ -2,8 +2,8 @@ import logging
 import os
 from typing import TYPE_CHECKING, Mapping
 
-import jmodelproxylib.errors as errors
-import jmodelproxylib.model as model
+import charms.proxylib.errors as errors
+import charms.proxylib.model as model
 
 try:
     from lightkube.models.core_v1 import EnvVar
@@ -29,7 +29,7 @@ class environ(dict):
     to temporarily set the proxy settings in os.environ.
 
     Usage:
-        with jmodelproxylib.environ(enabled=True) as env:
+        with charms.proxylib.environ(enabled=True) as env:
             # os.environ is updated for this context
             # with keys for http_proxy, https_proxy, no_proxy
             # with keys for HTTP_PROXY, HTTPS_PROXY, NO_PROXY
@@ -38,7 +38,7 @@ class environ(dict):
             ...
 
     Usage:
-        env = jmodelproxylib.environ(enabled=True)
+        env = charms.proxylib.environ(enabled=True)
         values, error = dict(env), env.error
 
         ...

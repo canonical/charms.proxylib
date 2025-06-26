@@ -3,14 +3,15 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "jmodelproxylib"
-version = "0.0.1"
+name = "charms.proxylib"
+dynamic = ["version"]
 description = "Charm library for juju-*-proxy model config"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache" }
 authors = [
-    { name= "Adam Dyess", email = "adam.dyess@canonical.com" }
+  { name= "Adam Dyess", email = "adam.dyess@canonical.com" },
+  { name="Mateo Florido", email="mateo.florido@canonical.com" }
 ]
 dependencies = []
 keywords = [
@@ -18,7 +19,7 @@ keywords = [
     "charming",
     "operators",
     "systemd",
-    "http-proxy",
+    "web-proxy",
     "validation"
 ]
 classifiers = [
@@ -36,12 +37,16 @@ lightkube = [
 ]
 
 [project.urls]
-Repository = "https://github.com/canonical/jmodelproxylib"
-BugTracker = "https://github.com/canonical/jmodelproxylib/issues"
+Repository = "https://github.com/canonical/charms.proxylib"
+BugTracker = "https://github.com/canonical/charms.proxylib/issues"
 
 [tool.ruff]
 line-length = 99
-target-version = "py310"
+extend-exclude = ["__pycache__", "*.egg_info"]
+
+[tool.mypy]
+explicit_package_bases = true
+namespace_packages = true
 
 [tool.setuptools]
 zip-safe = true
@@ -61,5 +66,4 @@ lint = [
     "ruff",
     "types-PyYAML",
     "types-backports"
-
 ]

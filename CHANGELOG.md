@@ -8,5 +8,5 @@ Versions follow `Semantic Versioning <https://semver.org/>`_ (``<major>.<minor>.
 
 Backward incompatible (breaking) changes will only be introduced in major versions
 
-jmodelproxylib 0.0.1 (2025-01-18)
+charms.proxylib 0.0.1 (2025-01-18)
 =========================

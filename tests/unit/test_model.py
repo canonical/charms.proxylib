@@ -3,8 +3,8 @@ from unittest import mock
 
 import pytest
 
-import jmodelproxylib
-import jmodelproxylib.errors
+import charms.proxylib
+import charms.proxylib.errors
 
 DEFAULT_ENV = {
     "JUJU_CHARM_HTTPS_PROXY": "https://example.com:8080",
@@ -26,8 +26,8 @@ def test_raw_missing_juju_env(dropped):
     env = DEFAULT_ENV.copy()
     env.pop(dropped)
     with mock.patch.dict(os.environ, env, clear=True):
-        with pytest.raises(jmodelproxylib.errors.JujuEnvironmentError):
-            jmodelproxylib.raw()
+        with pytest.raises(charms.proxylib.errors.JujuEnvironmentError):
+            charms.proxylib.raw()
 
 
 @pytest.mark.parametrize(
@@ -42,15 +42,15 @@ def test_raw_invalid_juju_env(invalid):
     env = DEFAULT_ENV.copy()
     env[invalid] = "not-a-valid-url"
     with mock.patch.dict(os.environ, env, clear=True):
-        with pytest.raises(jmodelproxylib.errors.ProxyUrlError):
-            jmodelproxylib.raw()
+        with pytest.raises(charms.proxylib.errors.ProxyUrlError):
+            charms.proxylib.raw()
 
 
 def test_raw_valid_juju_env():
     """Test that raw() returns the expected environment variables."""
     env = DEFAULT_ENV.copy()
     with mock.patch.dict(os.environ, env, clear=True):
-        assert jmodelproxylib.raw() == env
+        assert charms.proxylib.raw() == env
 
 
 @pytest.mark.parametrize(
@@ -84,7 +84,7 @@ def test_validated_adds_no_proxies_in_front(no_proxy, expected):
         "svc.cluster.local",
     ]
     with mock.patch.dict(os.environ, env, clear=True):
-        validated = jmodelproxylib.validated(
+        validated = charms.proxylib.validated(
             enabled=True,
             uppercase=False,
             add_no_proxies=K8S_DEFAULT_NO_PROXY,
