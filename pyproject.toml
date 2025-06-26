@@ -1,6 +1,10 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=70.3.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "node-and-date"
 
 [project]
 name = "charms.proxylib"
@@ -8,10 +12,11 @@ dynamic = ["version"]
 description = "Charm library for juju-*-proxy model config"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "Apache" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
   { name= "Adam Dyess", email = "adam.dyess@canonical.com" },
-  { name="Mateo Florido", email="mateo.florido@canonical.com" }
+  { name ="Mateo Florido", email="mateo.florido@canonical.com" }
 ]
 dependencies = []
 keywords = [
@@ -23,7 +28,6 @@ keywords = [
     "validation"
 ]
 classifiers = [
-    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
