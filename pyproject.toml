@@ -71,3 +71,6 @@ lint = [
     "types-PyYAML",
     "types-backports"
 ]
+
+[tool.bandit]
+exclude_dirs = [".tox", ".venv", "venv"]
